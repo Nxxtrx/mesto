@@ -1,102 +1,105 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesto</title>
-    <link rel="stylesheet" href="./vendor/normalize.css">
-    <link rel="stylesheet" href="./pages/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+  <link rel="stylesheet" href="./vendor/normalize.css">
+  <link rel="stylesheet" href="./pages/index.css">
 </head>
+
 <body>
-    <div class="page">
+  <div class="page">
 
-        <header class="header">
-            <img src="./image/__logo.svg" alt="логотип Место" class="header__logo">
-        </header>
+    <header class="header">
+      <img src="./image/__logo.svg" alt="логотип Место" class="header__logo">
+    </header>
 
-        <main class="main">
-            <section class="profile">
-                <img class="profile__avatar" src="./image/Profile.png" alt="Фотография профиля">
-                <article class="profile__info">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <p class="profile__subtitle">Исследователь океана</p>
-                    <button class="profile__edit-button" name="edit-prf-btn" type="button"></button>
-                </article>
-                <button class="profile__add-button" name="add-prf-btn" type="button"></button>
-            </section>
+    <main class="main">
+      <section class="profile">
+        <img class="profile__avatar" src="./image/Profile.png" alt="Фотография профиля">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <p class="profile__subtitle">Исследователь океана</p>
+          <button class="profile__edit-button" name="edit-prf-btn" type="button"></button>
+        </div>
+        <button class="profile__add-button" name="add-prf-btn" type="button"></button>
+      </section>
 
-            <section class="cards">
-                <ul class="cards__list">
+      <section class="cards" aria-label="Добавленный фотографии">
+        <ul class="cards__list">
 
-                    <li class="cards__item">
-                        <img class="cards__image" src="./image/karachaevsk.png" alt="">
-                        <div class="cards-description">
-                            <p class="cards__subtitle">Карачаевск</p>
-                            <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
-                        </div>
-                    </li>
+          <li class="cards__item">
+            <img class="cards__image" src="./image/karachaevsk.png" alt="Карачаевск">
+            <div class="cards-description">
+              <p class="cards__subtitle">Карачаевск</p>
+              <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
+            </div>
+          </li>
 
-                    <li class="cards__item">
-                        <img class="cards__image" src="./image/cards-elbrus.png" alt="">
-                        <div class="cards-description">
-                            <p class="cards__subtitle">Гора Эльбрус</p>
-                            <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
-                        </div>
-                    </li>
+          <li class="cards__item">
+            <img class="cards__image" src="./image/cards-elbrus.png" alt="Гора Эльбрус">
+            <div class="cards-description">
+              <p class="cards__subtitle">Гора Эльбрус</p>
+              <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
+            </div>
+          </li>
 
-                    <li class="cards__item">
-                        <img class="cards__image" src="./image/cards-dombay.png" alt="">
-                        <div class="cards-description">
-                            <p class="cards__subtitle">Домбай</p>
-                            <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
-                        </div>
-                    </li>
+          <li class="cards__item">
+            <img class="cards__image" src="./image/cards-dombay.png" alt="Домбай">
+            <div class="cards-description">
+              <p class="cards__subtitle">Домбай</p>
+              <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
+            </div>
+          </li>
 
-                    <li class="cards__item">
-                        <img class="cards__image" src="./image/cards-elbrus.png" alt="">
-                        <div class="cards-description">
-                            <p class="cards__subtitle">Гора Эльбрус</p>
-                            <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
-                        </div>
-                    </li>
+          <li class="cards__item">
+            <img class="cards__image" src="./image/cards-elbrus.png" alt="Гора Эльбрус">
+            <div class="cards-description">
+              <p class="cards__subtitle">Гора Эльбрус</p>
+              <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
+            </div>
+          </li>
 
-                    <li class="cards__item">
-                        <img class="cards__image" src="./image/cards-dombay.png" alt="">
-                        <div class="cards-description">
-                            <p class="cards__subtitle">Домбай</p>
-                            <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
-                        </div>
-                    </li>
+          <li class="cards__item">
+            <img class="cards__image" src="./image/cards-dombay.png" alt="Домбай">
+            <div class="cards-description">
+              <p class="cards__subtitle">Домбай</p>
+              <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
+            </div>
+          </li>
 
-                    <li class="cards__item">
-                        <img class="cards__image" src="./image/karachaevsk.png" alt="">
-                        <div class="cards-description">
-                            <p class="cards__subtitle">Карачаево-Черкесия</p>
-                            <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
-                        </div>
-                    </li>
+          <li class="cards__item">
+            <img class="cards__image" src="./image/karachaevsk.png" alt="Карачаево-Черкесия">
+            <div class="cards-description">
+              <p class="cards__subtitle">Карачаево-Черкесия</p>
+              <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
+            </div>
+          </li>
 
-                </ul>
-            </section>
-        </main>
+        </ul>
+      </section>
+    </main>
 
-        <footer class="footer">
-            <p class="footer__copyright">&copy;&nbsp;2022 Mesto Russia</p>
-        </footer>
+    <footer class="footer">
+      <p class="footer__copyright">&copy;&nbsp;2022 Mesto Russia</p>
+    </footer>
 
-        <section class="popup popup_opened">
-          <div class="popup__container">
-            <p class="popup__title">Редактировать профиль</p>
-            <form class="popup__form" action="">
-              <input class="popup__profile-name" type="text" id="profile-name" name="Name" value="Жак-Ив Кусто">
-              <input class="popup__profile-description" type="text" id="profile-description" name="description" value="Исследователь океана">
-              <button class="popup__btn-submit" type="submit">Сохранить</button>
-            </form>
-            <button type="button" class="popup__close"></button>
-          </div>
-        </section>
+    <section class="popup popup_opened" aria-label="Редактирование профиля">
+      <div class="popup__container">
+        <p class="popup__title">Редактировать профиль</p>
+        <form class="popup__form">
+          <input class="popup__profile-name" type="text" id="profile-name" name="Name" value="Жак-Ив Кусто">
+          <input class="popup__profile-description" type="text" id="profile-description" name="description" value="Исследователь океана">
+          <button class="popup__btn-submit" type="submit">Сохранить</button>
+        </form>
+        <button type="button" class="popup__close"></button>
+      </div>
+    </section>
 
-    </div>
-    <script src="./blocks/popup/popup.js"></script>
+  </div>
+  <script src="./blocks/popup/popup.js"></script>
 </body>
+
 </html>
