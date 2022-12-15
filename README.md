@@ -21,4 +21,4 @@
 
 **Github**
 
-* [Ссылка на проект в Github]()
+* [Ссылка на проект в Github](https://nxxtrx.github.io/mesto/)
