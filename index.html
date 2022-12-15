@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
-    <link rel="stylesheet" href="./normalize.css">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./vendor/normalize.css">
+    <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body>
     <div class="page">
@@ -32,7 +32,7 @@
                         <img class="cards__image" src="./image/karachaevsk.png" alt="">
                         <div class="cards-description">
                             <p class="cards__subtitle">Карачаевск</p>
-                            <button class="cards__like-btn" type="submit"></button>
+                            <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
                         </div>
                     </li>
 
@@ -40,7 +40,7 @@
                         <img class="cards__image" src="./image/cards-elbrus.png" alt="">
                         <div class="cards-description">
                             <p class="cards__subtitle">Гора Эльбрус</p>
-                            <button class="cards__like-btn" type="submit"></button>
+                            <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
                         </div>
                     </li>
 
@@ -48,7 +48,7 @@
                         <img class="cards__image" src="./image/cards-dombay.png" alt="">
                         <div class="cards-description">
                             <p class="cards__subtitle">Домбай</p>
-                            <button class="cards__like-btn" type="submit"></button>
+                            <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
                         </div>
                     </li>
 
@@ -56,7 +56,7 @@
                         <img class="cards__image" src="./image/cards-elbrus.png" alt="">
                         <div class="cards-description">
                             <p class="cards__subtitle">Гора Эльбрус</p>
-                            <button class="cards__like-btn" type="submit"></button>
+                            <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
                         </div>
                     </li>
 
@@ -64,7 +64,7 @@
                         <img class="cards__image" src="./image/cards-dombay.png" alt="">
                         <div class="cards-description">
                             <p class="cards__subtitle">Домбай</p>
-                            <button class="cards__like-btn" type="submit"></button>
+                            <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
                         </div>
                     </li>
 
@@ -72,7 +72,7 @@
                         <img class="cards__image" src="./image/karachaevsk.png" alt="">
                         <div class="cards-description">
                             <p class="cards__subtitle">Карачаево-Черкесия</p>
-                            <button class="cards__like-btn" type="submit"></button>
+                            <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
                         </div>
                     </li>
 
@@ -85,7 +85,7 @@
         </footer>
 
         <section class="popup popup_opened">
-          <article class="popup__container">
+          <div class="popup__container">
             <p class="popup__title">Редактировать профиль</p>
             <form class="popup__form" action="">
               <input class="popup__profile-name" type="text" id="profile-name" name="Name" value="Жак-Ив Кусто">
@@ -93,10 +93,10 @@
               <button class="popup__btn-submit" type="submit">Сохранить</button>
             </form>
             <button type="button" class="popup__close"></button>
-          </article>
+          </div>
         </section>
 
     </div>
-    <script src="./script.js"></script>
+    <script src="./blocks/popup/popup.js"></script>
 </body>
 </html>
