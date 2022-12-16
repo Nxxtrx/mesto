@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
-  <link rel="stylesheet" href="./vendor/normalize.css">
   <link rel="stylesheet" href="./pages/index.css">
 </head>
 
@@ -33,48 +32,48 @@
           <li class="cards__item">
             <img class="cards__image" src="./image/karachaevsk.png" alt="Карачаевск">
             <div class="cards-description">
-              <p class="cards__subtitle">Карачаевск</p>
-              <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
+              <h2 class="cards__subtitle">Карачаевск</h2>
+              <button class="cards__like-btn" type="button"></button>
             </div>
           </li>
 
           <li class="cards__item">
             <img class="cards__image" src="./image/cards-elbrus.png" alt="Гора Эльбрус">
             <div class="cards-description">
-              <p class="cards__subtitle">Гора Эльбрус</p>
-              <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
+              <h2 class="cards__subtitle">Гора Эльбрус</h2>
+              <button class="cards__like-btn" type="button"></button>
             </div>
           </li>
 
           <li class="cards__item">
             <img class="cards__image" src="./image/cards-dombay.png" alt="Домбай">
             <div class="cards-description">
-              <p class="cards__subtitle">Домбай</p>
-              <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
+              <h2 class="cards__subtitle">Домбай</h2>
+              <button class="cards__like-btn" type="button"></button>
             </div>
           </li>
 
           <li class="cards__item">
             <img class="cards__image" src="./image/cards-elbrus.png" alt="Гора Эльбрус">
             <div class="cards-description">
-              <p class="cards__subtitle">Гора Эльбрус</p>
-              <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
+              <h2 class="cards__subtitle">Гора Эльбрус</h2>
+              <button class="cards__like-btn" type="button"></button>
             </div>
           </li>
 
           <li class="cards__item">
             <img class="cards__image" src="./image/cards-dombay.png" alt="Домбай">
             <div class="cards-description">
-              <p class="cards__subtitle">Домбай</p>
-              <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
+              <h2 class="cards__subtitle">Домбай</h2>
+              <button class="cards__like-btn" type="button"></button>
             </div>
           </li>
 
           <li class="cards__item">
             <img class="cards__image" src="./image/karachaevsk.png" alt="Карачаево-Черкесия">
             <div class="cards-description">
-              <p class="cards__subtitle">Карачаево-Черкесия</p>
-              <button class="cards__like-btn cards__like-btn_active" type="submit"></button>
+              <h2 class="cards__subtitle">Карачаево-Черкесия</h2>
+              <button class="cards__like-btn" type="button"></button>
             </div>
           </li>
 
@@ -86,12 +85,12 @@
       <p class="footer__copyright">&copy;&nbsp;2022 Mesto Russia</p>
     </footer>
 
-    <section class="popup popup_opened" aria-label="Редактирование профиля">
+    <section class="popup" aria-label="Редактирование профиля">
       <div class="popup__container">
-        <p class="popup__title">Редактировать профиль</p>
-        <form class="popup__form">
-          <input class="popup__profile-name" type="text" id="profile-name" name="Name" value="Жак-Ив Кусто">
-          <input class="popup__profile-description" type="text" id="profile-description" name="description" value="Исследователь океана">
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <form class="popup__form" name="popup-form">
+          <input class="popup__profile-edit popup__profile-edit_name" type="text" id="profile-name" name="Name" value="Жак-Ив Кусто">
+          <input class="popup__profile-edit popup__profile-edit_description" type="text" id="profile-description" name="description" value="Исследователь океана">
           <button class="popup__btn-submit" type="submit">Сохранить</button>
         </form>
         <button type="button" class="popup__close"></button>
@@ -99,7 +98,7 @@
     </section>
 
   </div>
-  <script src="./blocks/popup/popup.js"></script>
+  <script src="./script/popup.js"></script>
 </body>
 
 </html>

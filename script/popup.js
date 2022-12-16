@@ -5,9 +5,9 @@ let editProfile = page.querySelector('.profile__edit-button');
 let popupOpened = page.querySelector('.popup_opened');
 let profileName = page.querySelector('.profile__name');
 let profileDescription = page.querySelector('.profile__subtitle');
-let submitButton = page.querySelector('.popup__btn-submit');
-let inputName = page.querySelector('.popup__profile-name');
-let inputDescription = page.querySelector('.popup__profile-description');
+let inputName = page.querySelector('.popup__profile-edit_name');
+let inputDescription = page.querySelector('.popup__profile-edit_description');
+let formPopup = page.querySelector('.popup__form')
 
 function closePopup() {
   if (popup.classList.contains('popup_opened')) {
@@ -19,15 +19,16 @@ function closePopup() {
   inputDescription.value = profileDescription.textContent;
 };
 
+closeButtom.addEventListener('click', closePopup);
+editProfile.addEventListener('click', closePopup);
+
+
 function submitPopup(e) {
+  e.preventDefault();
   profileName.textContent = `${inputName.value}`;
   profileDescription.textContent = `${inputDescription.value}`;
   closePopup();
-  e.preventDefault();
 };
 
+formPopup.addEventListener('submit', submitPopup);
 
-
-submitButton.addEventListener('click', submitPopup);
-closeButtom.addEventListener('click', closePopup);
-editProfile.addEventListener('click', closePopup);

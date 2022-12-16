@@ -1,12 +1,14 @@
 .popup__btn-submit {
   margin-top: 48px;
-  width: 358px;
-  height: 50px;
+  width: 100%;
+  padding: 14px 0 14px 0;
   color: #fff;
   font-size: 18px;
   font-weight: 400;
   line-height: calc(22/18);
   background-color: #000;
+  cursor: pointer;
+  border: none;
   opacity: 1;
   transition: opacity 0.4s linear;
 }
@@ -17,8 +19,8 @@
 
 @media screen and (max-width: 540px) {
   .popup__btn-submit{
-    width: 238px;
-    height: 46px;
     margin-top: 45px;
+    font-size: 14px;
+    line-height: calc(17/14);
   }
 }
