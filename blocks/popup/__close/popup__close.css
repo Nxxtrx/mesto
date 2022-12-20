@@ -6,9 +6,8 @@
   padding: 0;
   background-color: rgba(0, 0, 0, 0);
   border: none;
-
-  bottom: calc(100% + 8px);
-  left: calc(100% + 8px);
+  top: calc(-32px - 8px);
+  right: calc(-32px - 8px);
   cursor: pointer;
   opacity: 1;
   transition: opacity 1s linear;
@@ -23,7 +22,7 @@
     background-size: 20px 20px;
     width: 20px;
     height: 20px;
-    bottom: calc(322px + 16px);
-    left: calc(282px - 20px);
+    top: calc(-16px - 20px);
+    right: 0px;
   }
 }
