@@ -51,9 +51,9 @@
     <section class="popup popup__add-item" aria-label="Добавление фотогрфии в профиль">
       <div class="popup__container">
         <h3 class="popup__title">Новое место</h3>
-        <form class="popup__form" name="popup-form">
+        <form class="popup__form popup__form_type_add" name="popup-form">
           <input class="popup__profile-edit popup__profile-edit_type_title" type="text" id="picture-title" name="title" placeholder="Название">
-          <input class="popup__profile-edit popup__profile-edit_type_src" type="url" id="picture-url" name="src" placeholder="Ссылка на картинку">
+          <input class="popup__profile-edit popup__profile-edit_type_src" type="url" required id="picture-url" name="src" placeholder="Ссылка на картинку">
           <button class="popup__btn popup__btn-cards-add" type="submit">Сохранить</button>
         </form>
         <button type="button" class="popup__close"></button>

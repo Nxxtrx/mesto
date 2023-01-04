@@ -82,7 +82,6 @@ initialCards.forEach( (item) => {
   cardsElement.querySelector('.cards__subtitle').textContent = item.name;
   cardsElement.querySelector('.cards__image').src = item.link;
 
-
   cardList.append(cardsElement);
 });
 
@@ -111,7 +110,23 @@ function addCardsPopup(e) {
 
   addImageInput.value = '';
   addTitleInput.value = '';
+
+  cardList.querySelector('.cards__like-btn').addEventListener('click', function (event) {
+    event.target.classList.toggle('cards__like-btn_active');
+  });
+
 }
 
-let popSave = page.querySelector('.popup__btn-cards-add').addEventListener('click', addCardsPopup)
+let popSave = page.querySelector('.popup__form_type_add').addEventListener('submit', addCardsPopup);
+
+// лайки
+
+const likeButton = cardList.querySelectorAll('.cards__like-btn');
+
+likeButton.forEach ((item) => {
+  item.addEventListener('click', function (event) {
+    event.target.classList.toggle('cards__like-btn_active');
+  });
+});
+
 
