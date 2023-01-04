@@ -81,11 +81,37 @@ initialCards.forEach( (item) => {
   const cardsElement = cardsTemplate.querySelector('.cards__item').cloneNode(true);
   cardsElement.querySelector('.cards__subtitle').textContent = item.name;
   cardsElement.querySelector('.cards__image').src = item.link;
+
+
   cardList.append(cardsElement);
 });
+
 
 // popup окно добавления карточки
 
 const addMestoPopup = page.querySelector('.popup__add-item');
 const addCards = page.querySelector('.profile__add-button');
 addCards.addEventListener('click', () => {closePopup({modal: addMestoPopup})});
+
+// Функция добавления карточки
+
+function addCardsPopup(e) {
+  e.preventDefault();
+
+  const cardsElement = cardsTemplate.querySelector('.cards__item').cloneNode(true);
+  const addImageInput = page.querySelector('.popup__profile-edit_type_src');
+  const addTitleInput = page.querySelector('.popup__profile-edit_type_title');
+
+  cardsElement.querySelector('.cards__subtitle').textContent = `${addTitleInput.value}`;
+  cardsElement.querySelector('.cards__image').src = `${addImageInput.value}`;
+
+  cardList.prepend(cardsElement);
+
+  closePopup({modal: popup});
+
+  addImageInput.value = '';
+  addTitleInput.value = '';
+}
+
+let popSave = page.querySelector('.popup__btn-cards-add').addEventListener('click', addCardsPopup)
+
