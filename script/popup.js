@@ -111,15 +111,21 @@ function addCardsPopup(e) {
   addImageInput.value = '';
   addTitleInput.value = '';
 
+  // лайк для добавленных карт
   cardList.querySelector('.cards__like-btn').addEventListener('click', function (event) {
     event.target.classList.toggle('cards__like-btn_active');
   });
 
-}
+  // удаление добавленных карт
+  cardList.querySelectorAll('.cards__delete-btn').forEach ((item) => {
+    item.addEventListener('click', () => {item.parentElement.remove();});
+  });
+
+};
 
 let popSave = page.querySelector('.popup__form_type_add').addEventListener('submit', addCardsPopup);
 
-// лайки
+// лайки для карточек с массива
 
 const likeButton = cardList.querySelectorAll('.cards__like-btn');
 
@@ -129,4 +135,10 @@ likeButton.forEach ((item) => {
   });
 });
 
+// Удаление карточек с массива
 
+const deleteButton = cardList.querySelectorAll('.cards__delete-btn');
+
+deleteButton.forEach ((item) => {
+  item.addEventListener('click', () => {item.parentElement.remove();});
+});
