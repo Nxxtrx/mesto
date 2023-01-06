@@ -9,4 +9,10 @@
   position: relative;
   right: -244px;
   bottom: -43px;
+  cursor: pointer;
+  transition: opacity 0.2s linear;
+}
+
+.cards__delete-btn:hover {
+  opacity: .5;
 }

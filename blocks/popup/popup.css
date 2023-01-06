@@ -6,4 +6,7 @@
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 20s ease-in-out;
 }

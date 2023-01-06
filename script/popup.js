@@ -121,6 +121,15 @@ function addCardsPopup(e) {
     item.addEventListener('click', () => {item.parentElement.remove();});
   });
 
+  // открытие добавленных карточек
+  page.querySelectorAll('.cards__image').forEach ((item) => {
+    item.addEventListener('click', () => {
+      popupImageOpen.querySelector('.popup__image').src = item.getAttribute('src');
+      popupImageOpen.querySelector('.popup__image-title').textContent = item.parentElement.querySelector('.cards__subtitle').textContent;
+      console.log(item.textContent);
+      closePopup({modal: popupImageOpen});
+    });
+  });
 };
 
 let popSave = page.querySelector('.popup__form_type_add').addEventListener('submit', addCardsPopup);
@@ -141,4 +150,19 @@ const deleteButton = cardList.querySelectorAll('.cards__delete-btn');
 
 deleteButton.forEach ((item) => {
   item.addEventListener('click', () => {item.parentElement.remove();});
+});
+
+// Открытие попап с картинкой
+
+const popupCards = page.querySelectorAll('.cards__image');
+const popupImageOpen = page.querySelector('.popup__open-image');
+const cardsItem = page.querySelectorAll('.cards__item');
+
+popupCards.forEach ((item) => {
+  item.addEventListener('click', () => {
+    popupImageOpen.querySelector('.popup__image').src = item.getAttribute('src');
+    popupImageOpen.querySelector('.popup__image-title').textContent = item.parentElement.querySelector('.cards__subtitle').textContent;
+    console.log(item.textContent);
+    closePopup({modal: popupImageOpen});
+  });
 });
