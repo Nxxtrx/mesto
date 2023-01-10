@@ -2,7 +2,6 @@ let page = document.querySelector('.page');
 let closeButtom = page.querySelectorAll('.popup__close');
 let popup = page.querySelectorAll('.popup');
 let editProfile = page.querySelector('.profile__edit-button');
-let popupOpened = page.querySelector('.popup_opened');
 let profileName = page.querySelector('.profile__name');
 let profileDescription = page.querySelector('.profile__subtitle');
 let inputName = page.querySelector('.popup__profile-edit_type_name');
@@ -81,6 +80,7 @@ initialCards.forEach( (item) => {
   const cardsElement = cardsTemplate.querySelector('.cards__item').cloneNode(true);
   cardsElement.querySelector('.cards__subtitle').textContent = item.name;
   cardsElement.querySelector('.cards__image').src = item.link;
+  cardsElement.querySelector('.cards__image').alt = item.name;
 
   cardList.append(cardsElement);
 });
@@ -103,6 +103,7 @@ function addCardsPopup(e) {
 
   cardsElement.querySelector('.cards__subtitle').textContent = `${addTitleInput.value}`;
   cardsElement.querySelector('.cards__image').src = `${addImageInput.value}`;
+  cardsElement.querySelector('.cards__image').alt = `${addTitleInput.value}`;
 
   cardList.prepend(cardsElement);
 
@@ -126,7 +127,6 @@ function addCardsPopup(e) {
     item.addEventListener('click', () => {
       popupImageOpen.querySelector('.popup__image').src = item.getAttribute('src');
       popupImageOpen.querySelector('.popup__image-title').textContent = item.parentElement.querySelector('.cards__subtitle').textContent;
-      console.log(item.textContent);
       closePopup({modal: popupImageOpen});
     });
   });
@@ -156,13 +156,11 @@ deleteButton.forEach ((item) => {
 
 const popupCards = page.querySelectorAll('.cards__image');
 const popupImageOpen = page.querySelector('.popup__open-image');
-const cardsItem = page.querySelectorAll('.cards__item');
 
 popupCards.forEach ((item) => {
   item.addEventListener('click', () => {
     popupImageOpen.querySelector('.popup__image').src = item.getAttribute('src');
     popupImageOpen.querySelector('.popup__image-title').textContent = item.parentElement.querySelector('.cards__subtitle').textContent;
-    console.log(item.textContent);
     closePopup({modal: popupImageOpen});
   });
 });
