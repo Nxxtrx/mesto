@@ -27,7 +27,7 @@ function closePopup({modal}) {
 closeButtom.forEach ((elem) => {
   elem.addEventListener('click', () => {closePopup({modal: popup})});
 });
-const editPopup = page.querySelector('.popup__edit');
+const editPopup = page.querySelector('.popup_type_edit');
 editProfile.addEventListener('click', () => {closePopup({modal: editPopup})});
 
 // функция для сохранения введеных данных для редактирования профиля
@@ -88,7 +88,7 @@ initialCards.forEach( (item) => {
 
 // popup окно добавления карточки
 
-const addMestoPopup = page.querySelector('.popup__add-item');
+const addMestoPopup = page.querySelector('.popup_type_add-item');
 const addCards = page.querySelector('.profile__add-button');
 addCards.addEventListener('click', () => {closePopup({modal: addMestoPopup})});
 
@@ -155,7 +155,7 @@ deleteButton.forEach ((item) => {
 // Открытие попап с картинкой
 
 const popupCards = page.querySelectorAll('.cards__image');
-const popupImageOpen = page.querySelector('.popup__open-image');
+const popupImageOpen = page.querySelector('.popup_type_open-image');
 
 popupCards.forEach ((item) => {
   item.addEventListener('click', () => {
