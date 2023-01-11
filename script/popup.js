@@ -1,12 +1,12 @@
-let page = document.querySelector('.page');
-let closeButtom = page.querySelectorAll('.popup__close');
-let popup = page.querySelectorAll('.popup');
-let editProfile = page.querySelector('.profile__edit-button');
-let profileName = page.querySelector('.profile__name');
-let profileDescription = page.querySelector('.profile__subtitle');
-let inputName = page.querySelector('.popup__profile-edit_type_name');
-let inputDescription = page.querySelector('.popup__profile-edit_type_description');
-let formPopup = page.querySelector('.popup__form')
+const page = document.querySelector('.page');
+const closeButtom = page.querySelectorAll('.popup__close');
+const popup = page.querySelectorAll('.popup');
+const editProfile = page.querySelector('.profile__edit-button');
+const profileName = page.querySelector('.profile__name');
+const profileDescription = page.querySelector('.profile__subtitle');
+const inputName = page.querySelector('.popup__profile-edit_type_name');
+const inputDescription = page.querySelector('.popup__profile-edit_type_description');
+const formPopup = page.querySelector('.popup__form')
 
 // Функция открытия и закрытия попап окон
 
@@ -132,7 +132,7 @@ function addCardsPopup(e) {
   });
 };
 
-let popSave = page.querySelector('.popup__form_type_add').addEventListener('submit', addCardsPopup);
+const popupSaveImage = page.querySelector('.popup__form_type_add').addEventListener('submit', addCardsPopup);
 
 // лайки для карточек с массива
 
