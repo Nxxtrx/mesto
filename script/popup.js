@@ -12,7 +12,7 @@ let formPopup = page.querySelector('.popup__form')
 
 function closePopup({modal}) {
     popup.forEach( (item) => {
-      if (item.classList === modal.classList || item.classList.contains('popap_opened'))  {
+      if (item.classList === modal.classList)  {
         item.classList.add('popup_opened');
       } else {
         item.classList.remove('popup_opened');
