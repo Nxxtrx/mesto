@@ -22,7 +22,9 @@ const popupEdit = page.querySelector('.popup_type_edit');
 const popupAddItem = page.querySelector('.popup_type_add-item');
 const popupImageItem = page.querySelector('.popup_type_open-image');
 
-
+// картинка и описание попапа открытия картинки
+const popupImageImg = popupImageItem.querySelector(".popup__image");
+const popupImageTitle = popupImageItem.querySelector(".popup__image-title");
 
 // Функция открытия popup окон
 function openPopup (modal) {
@@ -70,11 +72,6 @@ const cardTemplate = page.querySelector('#cards-template').content;
 
 // список карточек
 const cardContainer = page.querySelector('.cards__list');
-
-// картинка и описание попапа открытия картинки
-const popupImageImg = popupImageItem.querySelector(".popup__image");
-const popupImageTitle = popupImageItem.querySelector(".popup__image-title");
-
 
 // Функция создания карточек
 function createCard(item) {
