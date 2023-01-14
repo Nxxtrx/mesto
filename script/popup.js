@@ -1,15 +1,27 @@
 const page = document.querySelector('.page');
+
+// Кнопки закрытия попап окон
 const buttonCloseList = page.querySelectorAll('.popup__close');
-const editProfile = page.querySelector('.profile__edit-button');
+
+// кнопка открытия попап окна для редактирования профиля
+const profilEditBtn = page.querySelector('.profile__edit-button');
+
+// имя и описание на странице
 const profileName = page.querySelector('.profile__name');
 const profileDescription = page.querySelector('.profile__subtitle');
+
+// поля ввода для редактирования профиля
 const inputName = page.querySelector('.popup__profile-edit_type_name');
 const inputDescription = page.querySelector('.popup__profile-edit_type_description');
-const formPopupEdit = page.querySelector('.popup__form');
 
+// форма папапа редактирования профиля
+const formPopupProfileEdit = page.querySelector('.popup__form_type_edit');
+
+// попапы
 const popupEdit = page.querySelector('.popup_type_edit');
 const popupAddItem = page.querySelector('.popup_type_add-item');
 const popupImageItem = page.querySelector('.popup_type_open-image');
+
 
 
 // Функция открытия popup окон
@@ -29,14 +41,14 @@ function openProfilePopup (modal) {
   openPopup(modal);
 }
 
+// Кнопка открытия popup для редактирования профиля
+profilEditBtn.addEventListener('click', () => {openProfilePopup(popupEdit)});
+
 // Кнопки закрытия popup окна
 buttonCloseList.forEach(btn => {
   const popup = btn.closest('.popup');
   btn.addEventListener('click', () => closePopup(popup));
 });
-
-// Кнопка открытия popup для редактирования профиля
-editProfile.addEventListener('click', () => {openProfilePopup(popupEdit)});
 
 // функция для сохранения введеных данных для редактирования профиля
 function submitPopupEdit(e) {
@@ -47,85 +59,106 @@ function submitPopupEdit(e) {
 };
 
 // Кнопка сохранения введеных данных для редактирования профиля
-formPopupEdit.addEventListener('submit', submitPopupEdit);
-
-// Добавление массива со стандартными карточками
+formPopupProfileEdit.addEventListener('submit', submitPopupEdit);
 
 
-// Добавление карточек на страницу из массива
 
-const cardsTemplate = page.querySelector('#cards-template').content;
-const cardList = page.querySelector('.cards__list');
-const popupImg = popupImageItem.querySelector(".popup__image");
-const popupTitle = popupImageItem.querySelector(".popup__image-title");
+// Добавление карточек на страницу
+
+// шаблон карточки
+const cardTemplate = page.querySelector('#cards-template').content;
+
+// список карточек
+const cardContainer = page.querySelector('.cards__list');
+
+// картинка и описание попапа открытия картинки
+const popupImageImg = popupImageItem.querySelector(".popup__image");
+const popupImageTitle = popupImageItem.querySelector(".popup__image-title");
+
 
 // Функция создания карточек
 function createCard(item) {
-  const cardsElement = cardsTemplate.querySelector(".cards__item").cloneNode(true);
 
-  console.log(item.name);
-  cardsElement.querySelector(".cards__subtitle").textContent = item.name;
-  cardsElement.querySelector(".cards__image").src = item.link;
-  cardsElement.querySelector(".cards__image").alt = item.name;
+  // клонирование карточки
+  const cardSample = cardTemplate.querySelector(".cards__item").cloneNode(true);
+
+  cardSample.querySelector(".cards__subtitle").textContent = item.name;
+  cardSample.querySelector(".cards__image").src = item.link;
+  cardSample.querySelector(".cards__image").alt = item.name;
+
 
   // Лайки исправленные
-  const likeBtn = cardsElement.querySelector(".cards__like-btn");
-  function like() {
+  const likeBtn = cardSample.querySelector(".cards__like-btn");
+
+  function pressingLike() {
     likeBtn.classList.toggle('cards__like-btn_active');
   };
-  likeBtn.addEventListener('click', like);
+
+  likeBtn.addEventListener('click', pressingLike);
 
 
   // удаление добавленных карт
-  const cardDeleteBtn = cardsElement.querySelector(".cards__delete-btn");
+  const cardDeleteBtn = cardSample.querySelector(".cards__delete-btn");
+
   function deleteCard() {
     cardDeleteBtn.closest('.cards__item').remove();
   }
+
   cardDeleteBtn.addEventListener('click', deleteCard);
 
-  const popupCardsImageBtn = cardsElement.querySelector(".cards__image");
-  const imageCardsTitle = cardsElement.querySelector(".cards__subtitle");
+
+  // функция открытия картинки
+  const popupCardsImage = cardSample.querySelector(".cards__image");
+  const imageCardsTitle = cardSample.querySelector(".cards__subtitle");
 
   function openImage() {
-    popupImg.src = popupCardsImageBtn.getAttribute("src");
-    popupTitle.textContent = imageCardsTitle.textContent;
+    popupImageImg.src = popupCardsImage.getAttribute("src");
+    popupImageTitle.textContent = imageCardsTitle.textContent;
     openPopup(popupImageItem);
   };
 
-  popupCardsImageBtn.addEventListener('click', openImage);
+  popupCardsImage.addEventListener('click', openImage);
 
-
-  return cardsElement;
-
+  return cardSample;
 };
 
 
 // Добавление карточек через массив
 initialCards.forEach( (item) => {
-  cardList.append(createCard(item))
+  cardContainer.append(createCard(item))
 });
 
 
 // popup окно добавления карточки
-const addMestoPopup = page.querySelector('.popup_type_add-item');
-const addCards = page.querySelector('.profile__add-button');
-addCards.addEventListener('click', () => {openPopup(popupAddItem)});
 
+const cardAddBtn = page.querySelector('.profile__add-button');
+const imagePopupInput = page.querySelector(".popup__profile-edit_type_src");
+const titlePopupInput = page.querySelector(".popup__profile-edit_type_title");
+
+// кнопка открытия попап окна для добавления карточки
+cardAddBtn.addEventListener('click', () => {
+  imagePopupInput.value = '';
+  titlePopupInput.value = '';
+  openPopup(popupAddItem);
+});
+
+// Сохранение данных внесенных в форму
 page.querySelector('.popup__form_type_add').addEventListener('submit', (e) => {
   e.preventDefault();
-  const addImageInput = page.querySelector(".popup__profile-edit_type_src");
-  const addTitleInput = page.querySelector(".popup__profile-edit_type_title");
-  const item = [
+
+  // Создание массива с инпутов ввода для названия и ссылки картинки
+  const cardArr = [
     {
-      name: `${addTitleInput.value}`,
-      link: `${addImageInput.value}`
+      name: `${titlePopupInput.value}`,
+      link: `${imagePopupInput.value}`
     }
   ];
 
-  cardList.prepend(createCard(item[0]));
+  cardContainer.prepend(createCard(cardArr[0]));
 
-  addImageInput.value = '';
-  addTitleInput.value = '';
+  // очистка формы
+  imagePopupInput.value = '';
+  titlePopupInput.value = '';
 
   closePopup(popupAddItem);
 });
