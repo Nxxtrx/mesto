@@ -79,11 +79,11 @@ function createCard(item) {
   // клонирование карточки
   const cardSample = cardTemplate.querySelector(".cards__item").cloneNode(true);
 
-  const popupCardsImage = cardSample.querySelector(".cards__image");
+  const cardImage = cardSample.querySelector(".cards__image");
 
   cardSample.querySelector(".cards__subtitle").textContent = item.name;
-  popupCardsImage.src = item.link;
-  popupCardsImage.alt = item.name;
+  cardImage.src = item.link;
+  cardImage.alt = item.name;
 
 
   // Лайки исправленные
@@ -107,14 +107,14 @@ function createCard(item) {
 
 
   // функция открытия картинки
-   function openImage() {
+  function openImage() {
     popupImageImg.src = item.link;
     popupImageImg.alt = item.name;
     popupImageTitle.textContent = item.name;
     openPopup(popupImageItem);
   };
 
-  popupCardsImage.addEventListener('click', openImage);
+  cardImage.addEventListener('click', openImage);
 
   return cardSample;
 };

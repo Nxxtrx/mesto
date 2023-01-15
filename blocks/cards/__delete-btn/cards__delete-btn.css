@@ -6,9 +6,9 @@
   background-position: 0;
   padding: 0;
   border: none;
-  position: relative;
-  right: -244px;
-  bottom: -43px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
   cursor: pointer;
   transition: opacity 0.2s linear;
 }
