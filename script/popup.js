@@ -79,9 +79,11 @@ function createCard(item) {
   // клонирование карточки
   const cardSample = cardTemplate.querySelector(".cards__item").cloneNode(true);
 
+  const popupCardsImage = cardSample.querySelector(".cards__image");
+
   cardSample.querySelector(".cards__subtitle").textContent = item.name;
-  cardSample.querySelector(".cards__image").src = item.link;
-  cardSample.querySelector(".cards__image").alt = item.name;
+  popupCardsImage.src = item.link;
+  popupCardsImage.alt = item.name;
 
 
   // Лайки исправленные
@@ -105,12 +107,10 @@ function createCard(item) {
 
 
   // функция открытия картинки
-  const popupCardsImage = cardSample.querySelector(".cards__image");
-  const imageCardsTitle = cardSample.querySelector(".cards__subtitle");
-
-  function openImage() {
-    popupImageImg.src = popupCardsImage.getAttribute("src");
-    popupImageTitle.textContent = imageCardsTitle.textContent;
+   function openImage() {
+    popupImageImg.src = item.link;
+    popupImageImg.alt = item.name;
+    popupImageTitle.textContent = item.name;
     openPopup(popupImageItem);
   };
 
@@ -134,8 +134,6 @@ const titlePopupInput = page.querySelector(".popup__profile-edit_type_title");
 
 // кнопка открытия попап окна для добавления карточки
 cardAddBtn.addEventListener('click', () => {
-  imagePopupInput.value = '';
-  titlePopupInput.value = '';
   openPopup(popupAddItem);
 });
 
