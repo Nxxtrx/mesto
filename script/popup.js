@@ -29,11 +29,36 @@ const popupImageTitle = popupImageItem.querySelector(".popup__image-title");
 // Функция открытия popup окон
 function openPopup (modal) {
   modal.classList.add('popup_opened');
+  // Добавление слушателя для закрытия попап окна по кнопке Esc
+  document.addEventListener('keydown', closePopupForKeyboard);
+
+  // page.addEventListener('click', closePopupByOverlay);
 };
+
+// Функция для закрытия попап окна по кнопке на клавиатуре
+function closePopupForKeyboard(evt) {
+  if (evt.key === 'Escape') {
+    const popup = page.querySelectorAll('.popup')
+    popup.forEach((item) => {
+      closePopup(item)
+    })
+  }
+}
+
+// function closePopupByOverlay(evt) {
+//   const popup = page.querySelector('.popup')
+//   console.log(evt.target)
+//   console.log(!evt.target.closest('.popup__container'))
+//   if(!evt.target.closest('.popup__container')) {
+//     closePopup(popup)
+//   }
+// }
 
 // Функция закрытия popup окна
 function closePopup(modal) {
   modal.classList.remove('popup_opened');
+  // Удаления слушателя для закрытия попап окна по кнопке Esc
+  document.removeEventListener('keydown', closePopupForKeyboard)
 };
 
 // Функция открытия попапа для редактирования профиля с сохранением полей
@@ -163,7 +188,6 @@ page.querySelector('.popup__form_type_add').addEventListener('submit', (e) => {
 
 const form = document.querySelector('.popup__form');
 const formInput = form.querySelector('.popup__profile-edit');
-const formError = form.querySelector(`.${formInput.id}-error`);
 
 
 const showInputError = (formElement, inputElement, errorMessage) => {
@@ -171,23 +195,23 @@ const showInputError = (formElement, inputElement, errorMessage) => {
   inputElement.classList.add('popup__profile-edit_type_error');
   errorElement.textContent = errorMessage;
   errorElement.classList.add('popup__input-error_active');
-}
+};
 
 const hideInputError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove('popup__profile-edit_type_error');
   errorElement.classList.remove('popup__input-error_active');
   errorElement.textContent = '';
-}
+};
 
 const checkInputValidity = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage);
   } else {
     hideInputError(formElement, inputElement);
-  }
+  };
 
-}
+};
 
 const setEventListerer = (formElement) => {
   const inputList = Array.from(formElement.querySelectorAll('.popup__profile-edit'));
@@ -206,31 +230,31 @@ function enableValidation() {
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault;
-    })
-
-    const fieldsetList = Array.from(document.querySelectorAll('.popup__form-set'));
-    fieldsetList.forEach((fieldset) => {
+    });
+    const fieldset = formElement.querySelector('.popup__form-set');
       setEventListerer(fieldset);
-    })
-  })
-}
+  });
+};
 
 enableValidation();
 
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
-  })
-}
+  });
+};
 
 function toggleButtonState(inputList, buttonElement) {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add('popup__btn_inactive');
-    buttonElement.disabled = true
+    buttonElement.disabled = true;
   } else {
-    buttonElement.classList.remove('popup__btn_inactive')
-    buttonElement.disabled = false
-  }
+    buttonElement.classList.remove('popup__btn_inactive');
+    buttonElement.disabled = false;
+  };
 
-}
+};
+
+
+
 
