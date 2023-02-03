@@ -34,6 +34,23 @@ const checkInputValidity = (formElement, inputElement, config) => {
   };
 }
 
+// функция проверки на валидность полей
+function hasInvalidInput(inputList) {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+}
+
+// функция переключения состояния кнопки
+function toggleButtonState(inputList, buttonElement, config) {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add(config.inactiveButtonClass);
+    buttonElement.disabled = true;
+  } else {
+    buttonElement.classList.remove(config.inactiveButtonClass);
+    buttonElement.disabled = false;
+  }
+}
 
 // функция для прослушивания введенных символов в полях
 const setEventListener = (formElement, config) => {
@@ -60,20 +77,4 @@ function enableValidation(config) {
 // вызов функции валидации
 enableValidation(formValidationConfig);
 
-// функция проверки на валидность полей
-function hasInvalidInput(inputList) {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-}
 
-// функция переключения состояния кнопки
-function toggleButtonState(inputList, buttonElement, config) {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(config.inactiveButtonClass);
-    buttonElement.disabled = true;
-  } else {
-    buttonElement.classList.remove(config.inactiveButtonClass);
-    buttonElement.disabled = false;
-  }
-}

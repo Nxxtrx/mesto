@@ -36,26 +36,6 @@ function openPopup (modal) {
   page.addEventListener('mousedown', closePopupByOverlay);
 }
 
-// Функция для закрытия попап окна по кнопке на клавиатуре
-function closePopupForKeyboard(evt) {
-  if (evt.key === 'Escape') {
-    const popup = page.querySelectorAll('.popup');
-    popup.forEach((item) => {
-      closePopup(item)
-    })
-  }
-}
-
-// функция для закрытия попап по клику на оверлей
-function closePopupByOverlay(evt) {
-  const popup = page.querySelectorAll('.popup');
-  popup.forEach((item) => {
-    if(!evt.target.closest('.popup__overlay')) {
-      closePopup(item);
-    }
-  })
-}
-
 // Функция закрытия popup окна
 function closePopup(modal) {
   modal.classList.remove('popup_opened');
@@ -65,8 +45,51 @@ function closePopup(modal) {
   page.removeEventListener('mousedown', closePopupByOverlay);
 }
 
+const popup = page.querySelectorAll('.popup');
+
+// Функция для закрытия попап окна по кнопке на клавиатуре
+function closePopupForKeyboard(evt) {
+  if (evt.key === 'Escape') {
+    popup.forEach((item) => {
+      closePopup(item)
+    })
+  }
+}
+
+// функция для закрытия попап по клику на оверлей
+function closePopupByOverlay(evt) {
+  popup.forEach((item) => {
+    if(!evt.target.closest('.popup__overlay')) {
+      closePopup(item);
+    }
+  })
+}
+
+// функция сброса валидации
+function resetValidation(modal) {
+  const inputPopupList = modal.querySelectorAll('.popup__profile-edit');
+  const inputErrorList = modal.querySelectorAll('.popup__input-error');
+
+  inputPopupList.forEach((item) => {
+    item.classList.remove('popup__profile-edit_type_error');
+  })
+
+  inputErrorList.forEach((item) =>{
+    item.classList.remove('popup__input-error_active');
+    item.textContent = '';
+  })
+
+  const buttonSubmit = modal.querySelector('.popup__btn');
+  buttonSubmit.disabled = false;
+  buttonSubmit.classList.remove('popup__btn_inactive');
+
+}
+
 // Функция открытия попапа для редактирования профиля с сохранением полей
 function openProfilePopup (modal) {
+  // сброс валидации при открытии попап окна
+  resetValidation(modal)
+  // получение сохраненных данных
   inputName.value = profileName.textContent;
   inputDescription.value = profileDescription.textContent;
   openPopup(modal);
@@ -115,7 +138,7 @@ function createCard(item) {
   cardImage.alt = item.name;
 
 
-  // Лайки исправленные
+  // Лайки
   const likeBtn = cardSample.querySelector(".cards__like-btn");
 
   function pressingLike() {
@@ -156,7 +179,6 @@ initialCards.forEach( (item) => {
 
 
 // popup окно добавления карточки
-
 const cardAddBtn = page.querySelector('.profile__add-button');
 const imagePopupInput = page.querySelector(".popup__profile-edit_type_src");
 const titlePopupInput = page.querySelector(".popup__profile-edit_type_title");
