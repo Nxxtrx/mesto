@@ -5,3 +5,6 @@
   opacity: 0.2;
 }
 
+.popup__btn_inactive:hover {
+  opacity: 0.2;
+}

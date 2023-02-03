@@ -31,8 +31,8 @@ function openPopup (modal) {
   modal.classList.add('popup_opened');
   // Добавление слушателя для закрытия попап окна по кнопке Esc
   document.addEventListener('keydown', closePopupForKeyboard);
-
-  // page.addEventListener('click', closePopupByOverlay);
+  // добавление слушателя для закрытия попап по клику на оверлей
+  page.addEventListener('mousedown', closePopupByOverlay);
 };
 
 // Функция для закрытия попап окна по кнопке на клавиатуре
@@ -45,20 +45,24 @@ function closePopupForKeyboard(evt) {
   }
 }
 
-// function closePopupByOverlay(evt) {
-//   const popup = page.querySelector('.popup')
-//   console.log(evt.target)
-//   console.log(!evt.target.closest('.popup__container'))
-//   if(!evt.target.closest('.popup__container')) {
-//     closePopup(popup)
-//   }
-// }
+// функция для закрытия попап по клику на оверлей
+function closePopupByOverlay(evt) {
+  const popup = page.querySelectorAll('.popup');
+  popup.forEach((item) => {
+    if(!evt.target.closest('.popup__overlay')) {
+      closePopup(item);
+    }
+  })
+
+}
 
 // Функция закрытия popup окна
 function closePopup(modal) {
   modal.classList.remove('popup_opened');
   // Удаления слушателя для закрытия попап окна по кнопке Esc
   document.removeEventListener('keydown', closePopupForKeyboard)
+  // Удаления слушателя для закрытия попап по клику на оверлей
+  page.removeEventListener('mousedown', closePopupByOverlay)
 };
 
 // Функция открытия попапа для редактирования профиля с сохранением полей
