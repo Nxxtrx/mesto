@@ -188,76 +188,86 @@ page.querySelector('.popup__form_type_add').addEventListener('submit', (e) => {
 });
 
 
+
+
+
+
+
+
+
+
 // Валидация формы
 
-const form = document.querySelector('.popup__form');
-const formInput = form.querySelector('.popup__profile-edit');
 
-
-const showInputError = (formElement, inputElement, errorMessage) => {
+// функция для добавления сообщщения об ошибки
+const showInputError = (formElement, inputElement, errorMessage, config) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add('popup__profile-edit_type_error');
+  inputElement.classList.add(config.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__input-error_active');
+  console.log(errorElement);
+  errorElement.classList.add(config.errorClass);
 };
 
-const hideInputError = (formElement, inputElement) => {
+// функция для удаления ошибки при валидности полей
+const hideInputError = (formElement, inputElement, config) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('popup__profile-edit_type_error');
-  errorElement.classList.remove('popup__input-error_active');
+  inputElement.classList.remove(config.inputErrorClass);
+  errorElement.classList.remove(config.errorClass);
   errorElement.textContent = '';
 };
 
-const checkInputValidity = (formElement, inputElement) => {
+// функция для реализации валидации
+const checkInputValidity = (formElement, inputElement, config) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, inputElement.validationMessage, config);
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, config);
   };
-
 };
 
-const setEventListerer = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__profile-edit'));
-  const buttonSubmit = formElement.querySelector('.popup__btn');
-  toggleButtonState(inputList, buttonSubmit);
+// функция для прослушивания введенных символов в полях
+const setEventListener = (formElement, config) => {
+  const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+  const buttonSubmit = formElement.querySelector(config.submitButtonSelector);
+  toggleButtonState(inputList, buttonSubmit, config);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function() {
-      checkInputValidity(formElement, inputElement);
-      toggleButtonState(inputList, buttonSubmit);
+      checkInputValidity(formElement, inputElement, config);
+      toggleButtonState(inputList, buttonSubmit, config);
     });
   });
 };
 
-function enableValidation() {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
+
+
+// функция перебора форм
+function enableValidation(config) {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
   formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault;
-    });
-    const fieldset = formElement.querySelector('.popup__form-set');
-      setEventListerer(fieldset);
+    setEventListener(formElement, config);
   });
 };
 
-enableValidation();
+// вызов функции валидации
+enableValidation(formValidationConfig);
 
+// функция проверки на валидность полей
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
 };
 
-function toggleButtonState(inputList, buttonElement) {
+// функция переключения состояния кнопки
+function toggleButtonState(inputList, buttonElement, config) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__btn_inactive');
+    buttonElement.classList.add(config.inactiveButtonClass);
     buttonElement.disabled = true;
   } else {
-    buttonElement.classList.remove('popup__btn_inactive');
+    buttonElement.classList.remove(config.inactiveButtonClass);
     buttonElement.disabled = false;
-  };
-
-};
+  }
+}
 
 
 
