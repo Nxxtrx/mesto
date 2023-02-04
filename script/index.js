@@ -45,7 +45,7 @@ function closePopup(modal) {
   page.removeEventListener('mousedown', closePopupByOverlay);
 }
 
-const popup = page.querySelectorAll('.popup')
+const popup = page.querySelectorAll('.popup');
 
 // Функция для закрытия попап окна по кнопке на клавиатуре
 function closePopupForKeyboard(evt) {
@@ -208,7 +208,6 @@ page.querySelector('.popup__form_type_add').addEventListener('submit', (e) => {
   // очистка формы
   imagePopupInput.value = '';
   titlePopupInput.value = '';
-
 
   closePopup(popupAddItem);
 })
