@@ -141,7 +141,7 @@ page.querySelector('.popup__form_type_add').addEventListener('submit', (e) => {
   ];
 
   // Добавление карточки через форму
-  const card = new Card(cardArr[0], '#cards-template', openPopupImage);
+  const card = new Card(cardArr[0], '#cards-template', openPopup);
   const cardElement = card.generateCard();
   document.querySelector('.cards__list').prepend(cardElement);
 
