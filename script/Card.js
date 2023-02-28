@@ -1,10 +1,11 @@
+import {popupImageItem} from './index.js'
+
 class Card {
-  constructor(card, templateSelector, openPopupImage){
+  constructor(card, templateSelector, openPopup){
     this._name = card.name;
     this._link = card.link;
-    this._openPopupImage = openPopupImage;
+    this._openPopupImage = openPopup;
     this._templateSelector = templateSelector;
-
   }
   _getTemplate = () => {
     const cardElement = document.querySelector(this._templateSelector).content.querySelector('.cards__item').cloneNode(true);
@@ -16,7 +17,8 @@ class Card {
 
     // ссылка на картинку
     this._cardImage = this._element.querySelector('.cards__image');
-    this._cardImage.src= this._link;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name
     // название карточки
     this._cardTitle = this._element.querySelector('.cards__subtitle');
     this._cardTitle.textContent = this._name;
@@ -47,7 +49,7 @@ class Card {
       this._popupOpenImage.src = this._cardImage.src;
       this._popupOpenTitle = document.querySelector('.popup__image-title');
       this._popupOpenTitle.textContent = this._cardTitle.textContent;
-      this._openPopupImage();
+      this._openPopupImage(popupImageItem);
     })
 
   }
