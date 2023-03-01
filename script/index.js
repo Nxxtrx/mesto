@@ -1,6 +1,7 @@
-import {Card} from './Card.js';
+import { Card } from './Card.js';
 import { initialCards } from './cards.js';
-import { FormValidation, formValidationConfig} from './FormValidation.js';
+import { FormValidation} from './FormValidation.js';
+import { formValidationConfig } from './formValidationConfig.js';
 
 
 const page = document.querySelector('.page');
@@ -112,7 +113,6 @@ function submitPopupEdit(e) {
 formPopupProfileEdit.addEventListener('submit', submitPopupEdit);
 
 
-
 // popup окно добавления карточки
 const cardAddBtn = page.querySelector('.profile__add-button');
 const imagePopupInput = page.querySelector(".popup__profile-edit_type_src");
@@ -140,11 +140,10 @@ page.querySelector('.popup__form_type_add').addEventListener('submit', (e) => {
     }
   ];
 
-  // Добавление карточки через форму
+  // Добавление карточки через класс в форме
   const card = new Card(cardArr[0], '#cards-template', openPopup);
   const cardElement = card.generateCard();
   document.querySelector('.cards__list').prepend(cardElement);
-
 
   // очистка формы
   imagePopupInput.value = '';
@@ -153,7 +152,7 @@ page.querySelector('.popup__form_type_add').addEventListener('submit', (e) => {
   closePopup(popupAddItem);
 })
 
-// добавление карточек на страницу с обьекта
+// добавление карточек на страницу через класс с обьекта initialCards
 initialCards.forEach((item)=> {
   const card = new Card(item, '#cards-template', openPopup);
   const cardElement = card.generateCard();
