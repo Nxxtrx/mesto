@@ -3,7 +3,6 @@ import { initialCards } from './cards.js';
 import { FormValidation} from './FormValidation.js';
 import { formValidationConfig } from './formValidationConfig.js';
 
-
 const page = document.querySelector('.page');
 
 // Кнопки закрытия попап окон
@@ -23,11 +22,28 @@ const inputDescription = page.querySelector('.popup__profile-edit_type_descripti
 // форма папапа редактирования профиля
 const formPopupProfileEdit = page.querySelector('.popup__form_type_edit');
 
+// форма для добавления новой карточки
+const formPopupAddMesto = page.querySelector('.popup__form_type_add');
+
 // попапы
 const popupEdit = page.querySelector('.popup_type_edit');
 const popupAddItem = page.querySelector('.popup_type_add-item');
-export const popupImageItem = page.querySelector('.popup_type_open-image');
 
+// контейнер для карточек
+const cardContainer = page.querySelector('.cards__list');
+
+// popup окно добавления карточки
+const cardAddBtn = page.querySelector('.profile__add-button');
+const imagePopupInput = page.querySelector(".popup__profile-edit_type_src");
+const titlePopupInput = page.querySelector(".popup__profile-edit_type_title");
+
+// добавление валидации формы для редактирования профиля
+const formProfileEditValidation = new FormValidation(formValidationConfig, formPopupProfileEdit);
+formProfileEditValidation.enableValidation();
+
+// функция валидации формы для добавляения новой карточки
+const formAddMestoValidation = new FormValidation(formValidationConfig, formPopupAddMesto);
+formAddMestoValidation.enableValidation();
 
 // Функция открытия popup окон
 function openPopup (modal) {
@@ -57,49 +73,23 @@ function closePopupForKeyboard(evt) {
 
 // функция для закрытия попап по клику на оверлей
 function closePopupByOverlay(evt) {
-  const popupOpened = page.querySelector('.popup_opened');
   if(!evt.target.closest('.popup__overlay')) {
+    const popupOpened = page.querySelector('.popup_opened');
     closePopup(popupOpened);
   }
-}
-
-// функция сброса валидации
-function resetValidation(modal) {
-  const inputPopupList = modal.querySelectorAll('.popup__profile-edit');
-  const inputErrorList = modal.querySelectorAll('.popup__input-error');
-
-  inputPopupList.forEach((item) => {
-    item.classList.remove('popup__profile-edit_type_error');
-  })
-
-  inputErrorList.forEach((item) =>{
-    item.classList.remove('popup__input-error_active');
-    item.textContent = '';
-  })
-
-  const buttonSubmit = modal.querySelector('.popup__btn');
-  buttonSubmit.disabled = false;
-  buttonSubmit.classList.remove('popup__btn_inactive');
 }
 
 // Функция открытия попапа для редактирования профиля с сохранением полей
 function openProfilePopup (modal) {
   // сброс валидации при открытии попап окна
-  resetValidation(modal)
+  formProfileEditValidation.resetValidationErrors();
+  // Сброс кнопки submit
+  formProfileEditValidation.resetSubmitButton();
   // получение сохраненных данных
   inputName.value = profileName.textContent;
   inputDescription.value = profileDescription.textContent;
   openPopup(modal);
 }
-
-// Кнопка открытия popup для редактирования профиля
-profilEditBtn.addEventListener('click', () => {openProfilePopup(popupEdit)});
-
-// Кнопки закрытия popup окна
-buttonCloseList.forEach(btn => {
-  const popup = btn.closest('.popup');
-  btn.addEventListener('click', () => closePopup(popup));
-})
 
 // функция для сохранения введеных данных для редактирования профиля
 function submitPopupEdit(e) {
@@ -109,27 +99,26 @@ function submitPopupEdit(e) {
   closePopup(popupEdit);
 }
 
-// Кнопка сохранения введеных данных для редактирования профиля
-formPopupProfileEdit.addEventListener('submit', submitPopupEdit);
+// функция добавления карточек
+function createCard(item) {
+  const card = new Card(item, '#cards-template', openPopup);
+  const cardElement = card.generateCard();
+  cardContainer.prepend(cardElement);
+}
 
+// добавление карточек на страницу через класс с обьекта initialCards
+initialCards.forEach((item)=> {
+  createCard(item);
+})
 
-// popup окно добавления карточки
-const cardAddBtn = page.querySelector('.profile__add-button');
-const imagePopupInput = page.querySelector(".popup__profile-edit_type_src");
-const titlePopupInput = page.querySelector(".popup__profile-edit_type_title");
-
-// кнопка открытия попап окна для добавления карточки
-cardAddBtn.addEventListener('click', () => {
-  // сбрасывание кнопки
-  const buttonSubmitForAddItem = popupAddItem.querySelector('.popup__btn');
-  buttonSubmitForAddItem.disabled = true;
-  buttonSubmitForAddItem.classList.add('popup__btn_inactive');
-
-  openPopup(popupAddItem);
-});
+// Кнопки закрытия popup окна
+buttonCloseList.forEach(btn => {
+  const popup = btn.closest('.popup');
+  btn.addEventListener('click', () => closePopup(popup));
+})
 
 // Сохранение данных внесенных в форму
-page.querySelector('.popup__form_type_add').addEventListener('submit', (e) => {
+formPopupAddMesto.addEventListener('submit', (e) => {
   e.preventDefault();
 
   // Создание массива с инпутов ввода для названия и ссылки картинки
@@ -141,27 +130,22 @@ page.querySelector('.popup__form_type_add').addEventListener('submit', (e) => {
   ];
 
   // Добавление карточки через класс в форме
-  const card = new Card(cardArr[0], '#cards-template', openPopup);
-  const cardElement = card.generateCard();
-  document.querySelector('.cards__list').prepend(cardElement);
+  createCard(cardArr[0])
 
   // очистка формы
-  imagePopupInput.value = '';
-  titlePopupInput.value = '';
+  formPopupAddMesto.reset();
 
   closePopup(popupAddItem);
 })
 
-// добавление карточек на страницу через класс с обьекта initialCards
-initialCards.forEach((item)=> {
-  const card = new Card(item, '#cards-template', openPopup);
-  const cardElement = card.generateCard();
-  document.querySelector('.cards__list').append(cardElement);
-})
+// Кнопка открытия popup для редактирования профиля
+profilEditBtn.addEventListener('click', () => {openProfilePopup(popupEdit)});
 
-// добавление валидации форм
-const formList = document.querySelectorAll('.popup__form');
-formList.forEach((item) => {
-  const popupValid = new FormValidation(formValidationConfig, item);
-  popupValid.enableValidation();
-})
+// Кнопка сохранения введеных данных для редактирования профиля
+formPopupProfileEdit.addEventListener('submit', submitPopupEdit);
+
+// кнопка открытия попап окна для добавления карточки
+cardAddBtn.addEventListener('click', () => {
+  formAddMestoValidation.resetSubmitButton();
+  openPopup(popupAddItem);
+});

@@ -1,4 +1,4 @@
-import {popupImageItem} from './index.js'
+import {popupImageItem, popupImage, popupTitle} from '../utils/constants.js'
 
 class Card {
   constructor(card, templateSelector, openPopup){
@@ -6,6 +6,8 @@ class Card {
     this._link = card.link;
     this._openPopupImage = openPopup;
     this._templateSelector = templateSelector;
+    this._popupImage = popupImage;
+    this._popupTitle = popupTitle;
   }
 
   // функция клонирования типплейта
@@ -26,11 +28,9 @@ class Card {
 
   // функция открытия попап окна с картинкой
   _openImagePopup = () => {
-    this._popupImage = document.querySelector('.popup__image');
     this._popupImage.src = this._cardImage.src;
     this._popupImage.alt = this._cardTitle.textContent;
 
-    this._popupTitle = document.querySelector('.popup__image-title');
     this._popupTitle.textContent = this._cardTitle.textContent;
 
     this._openPopupImage(popupImageItem);

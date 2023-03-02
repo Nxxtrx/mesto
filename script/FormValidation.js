@@ -67,6 +67,22 @@ class FormValidation{
     errorElement.textContent = '';
   }
 
+  resetSubmitButton = () => {
+    if (this._formElement.classList.contains('popup__form_type_edit')){
+      this._buttonSubmitElement.classList.remove(this._inactiveButtonClass);
+      this._buttonSubmitElement.disabled = false;
+    } else {
+      this._buttonSubmitElement.classList.add(this._inactiveButtonClass);
+      this._buttonSubmitElement.disabled = true;
+    }
+  }
+
+  resetValidationErrors() {
+    this._inputList.forEach((item) => {
+      this._hideInputError(item);
+    })
+  }
+
   // функция перебора форм
   enableValidation() {
     this._setEventListener();
