@@ -45,6 +45,8 @@ formProfileEditValidation.enableValidation();
 const formAddMestoValidation = new FormValidation(formValidationConfig, formPopupAddMesto);
 formAddMestoValidation.enableValidation();
 
+
+
 // Функция открытия popup окон
 function openPopup (modal) {
   modal.classList.add('popup_opened');

@@ -1,5 +1,5 @@
-class FormValidation{
-  constructor(formValidationConfig, formElement){
+class FormValidation {
+  constructor(formValidationConfig, formElement) {
     this._formElement = formElement;
 
     this._formSelector = formValidationConfig.formSelector;
@@ -9,27 +9,29 @@ class FormValidation{
     this._inputErrorClass = formValidationConfig.inputErrorClass;
     this._errorClass = formValidationConfig.errorClass;
 
-    this._inputList = Array.from(formElement.querySelectorAll(this._inputSelector))
-    this._buttonSubmitElement = formElement.querySelector(this._submitButtonSelector)
+    this._inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
+    this._buttonSubmitElement = formElement.querySelector(this._submitButtonSelector);
   }
 
   // функция для прослушивания введенных символов в полях
   _setEventListener = () => {
-    this._buttonSubmit = this._formElement.querySelector(this._submitButtonSelector);
+    this._buttonSubmit = this._formElement.querySelector(
+      this._submitButtonSelector
+    );
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
-      inputElement.addEventListener('input', () => {
+      inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
         this._toggleButtonState();
       });
     });
-  }
+  };
 
   _hasInvalidInput = () => {
     return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
-  }
+  };
 
   // функция переключения состояния кнопки
   _toggleButtonState() {
@@ -42,14 +44,14 @@ class FormValidation{
     }
   }
 
-    // функция для реализации валидации
+  // функция для реализации валидации
   _checkInputValidity = (inputElement) => {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage);
     } else {
       this._hideInputError(inputElement);
-    };
-  }
+    }
+  };
 
   // функция для добавления сообщщения об ошибки
   _showInputError = (inputElement, errorMessage) => {
@@ -57,30 +59,34 @@ class FormValidation{
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._errorClass);
-  }
+  };
 
   // функция для удаления ошибки при валидности полей
   _hideInputError = (inputElement) => {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
-    errorElement.textContent = '';
-  }
+    errorElement.textContent = "";
+  };
 
+  // функция сброса кнопки:
+  // для редактирования профиля при закрытии попап окна с ошибками
+  // для добавления новой карточки после submit
   resetSubmitButton = () => {
-    if (this._formElement.classList.contains('popup__form_type_edit')){
+    if (this._formElement.classList.contains('popup__form_type_edit')) {
       this._buttonSubmitElement.classList.remove(this._inactiveButtonClass);
       this._buttonSubmitElement.disabled = false;
     } else {
       this._buttonSubmitElement.classList.add(this._inactiveButtonClass);
       this._buttonSubmitElement.disabled = true;
     }
-  }
+  };
 
+  // функция сброса валидации при повторном открытии окна редактирования профиля
   resetValidationErrors() {
     this._inputList.forEach((item) => {
       this._hideInputError(item);
-    })
+    });
   }
 
   // функция перебора форм
