@@ -2,6 +2,7 @@ import { Card } from './Card.js';
 import { initialCards } from './cards.js';
 import { FormValidation} from './FormValidation.js';
 import { formValidationConfig } from './formValidationConfig.js';
+import Section from './Section.js';
 
 const page = document.querySelector('.page');
 
@@ -101,17 +102,23 @@ function submitPopupEdit(e) {
   closePopup(popupEdit);
 }
 
-// функция добавления карточек
-function createCard(item) {
-  const card = new Card(item, '#cards-template', openPopup);
-  const cardElement = card.generateCard();
-  cardContainer.prepend(cardElement);
+const cardListSelector = ".cards__list";
+
+function createCard(items) {
+  const cardList = new Section({
+    data: items,
+    renderer: (item) => {
+    const card = new Card(item, '#cards-template', openPopup);
+    const cardElement = card.generateCard();
+    cardList.setItem(cardElement);
+    }
+  }, cardListSelector)
+  console.log(cardList);
+  cardList.renderItems();
 }
 
 // добавление карточек на страницу через класс с обьекта initialCards
-initialCards.forEach((item)=> {
-  createCard(item);
-})
+createCard(initialCards);
 
 // Кнопки закрытия popup окна
 buttonCloseList.forEach(btn => {
@@ -132,7 +139,7 @@ formPopupAddMesto.addEventListener('submit', (e) => {
   ];
 
   // Добавление карточки через класс в форме
-  createCard(cardArr[0])
+  createCard(cardArr)
 
   // очистка формы
   formPopupAddMesto.reset();
@@ -151,3 +158,5 @@ cardAddBtn.addEventListener('click', () => {
   formAddMestoValidation.resetSubmitButton();
   openPopup(popupAddItem);
 });
+
+

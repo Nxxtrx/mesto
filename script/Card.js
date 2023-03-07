@@ -59,7 +59,7 @@ class Card {
     // ссылка на картинку
     this._cardImage = this._element.querySelector('.cards__image');
     this._cardImage.src = this._link;
-    this._cardImage.alt = this._name
+    this._cardImage.alt = this._name;
 
     // название карточки
     this._cardTitle = this._element.querySelector('.cards__subtitle');

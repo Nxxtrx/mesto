@@ -1,0 +1,19 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "### Описание проекста",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nxxtrx/mesto.git"
+  },
+  "author": "Denis Valitov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nxxtrx/mesto/issues"
+  },
+  "homepage": "https://github.com/Nxxtrx/mesto#readme"
+}
