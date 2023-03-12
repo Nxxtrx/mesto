@@ -1,10 +1,10 @@
-import {popupImageItem, popupImage, popupTitle} from '../utils/constants.js'
+import {popupImage, popupTitle} from '../utils/constants.js'
 
 class Card {
-  constructor(card, templateSelector, openPopup){
+  constructor(card, templateSelector, hundleCardClick){
     this._name = card.name;
     this._link = card.link;
-    this._openPopupImage = openPopup;
+    this._hundleCardClick = hundleCardClick;
     this._templateSelector = templateSelector;
     this._popupImage = popupImage;
     this._popupTitle = popupTitle;
@@ -26,15 +26,6 @@ class Card {
     this._element.remove();
   }
 
-  // функция открытия попап окна с картинкой
-  _openImagePopup = () => {
-    this._popupImage.src = this._cardImage.src;
-    this._popupImage.alt = this._cardTitle.textContent;
-
-    this._popupTitle.textContent = this._cardTitle.textContent;
-
-    this._openPopupImage(popupImageItem);
-  }
 
   _addEventListener = () => {
     // слушатель для лайка на карточке
@@ -49,7 +40,7 @@ class Card {
 
     // Слушатель на картинку для открытия попапа
     this._cardImage.addEventListener('click', () => {
-      this._openImagePopup();
+      this._hundleCardClick(this._link, this._name);
     })
   }
 
