@@ -78,6 +78,8 @@ profilEditBtn.addEventListener('click', (e) => {
   e.preventDefault();
   inputName.value = userInfo.getUserInfo().name;
   inputDescription.value = userInfo.getUserInfo().description;
+  formProfileEditValidation.resetValidationErrors();
+  formProfileEditValidation.resetSubmitButton();
   popupEditProfile.openPopup();
 })
 
