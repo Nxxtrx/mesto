@@ -1,11 +1,10 @@
-import { Card } from './Card.js';
-import { initialCards } from './cards.js';
-import { FormValidation} from './FormValidation.js';
-import { formValidationConfig } from './formValidationConfig.js';
-import PopupWithForm from './PopupWithForm.js';
-import Section from './Section.js';
-import UserInfo from './UserInfo.js';
-import PopupWithImage from './PopupWithImage.js';
+import './pages/index.css';
+import { Card } from './components/Card.js';
+import { FormValidation} from './components/FormValidation.js';
+import PopupWithForm from './components/PopupWithForm.js';
+import Section from './components/Section.js';
+import UserInfo from './components/UserInfo.js';
+import PopupWithImage from './components/PopupWithImage.js';
 
 import {
   profilEditBtn,
@@ -14,8 +13,10 @@ import {
   formPopupProfileEdit,
   formPopupAddMesto,
   cardAddBtn,
-  cardListSelector
-} from '../utils/constants.js'
+  cardListSelector,
+  initialCards,
+  formValidationConfig
+} from './utils/constants.js'
 
 // добавление валидации формы для редактирования профиля
 const formProfileEditValidation = new FormValidation(formValidationConfig, formPopupProfileEdit);
