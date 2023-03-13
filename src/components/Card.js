@@ -1,13 +1,9 @@
-import {popupImage, popupTitle} from '../utils/constants.js'
-
 class Card {
   constructor(card, templateSelector, hundleCardClick){
     this._name = card.name;
     this._link = card.link;
     this._hundleCardClick = hundleCardClick;
     this._templateSelector = templateSelector;
-    this._popupImage = popupImage;
-    this._popupTitle = popupTitle;
   }
 
   // функция клонирования типплейта
@@ -24,6 +20,7 @@ class Card {
   // функция удаления карточки
   _removeCard = () => {
     this._element.remove();
+    this._element = null;
   }
 
 

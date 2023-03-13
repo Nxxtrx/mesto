@@ -23,19 +23,12 @@ export default class PopupWithForm extends Popup{
     this._popupForm.addEventListener('submit', (e) => {
       e.preventDefault();
       this._callbackSubmitform(this._getInputValues());
-      this._resetForm();
     })
-  }
-
-  // сброс формы для добавлении карточки
-  _resetForm() {
-    if(this._popupForm.classList.contains('popup__form_type_add')) {
-      this._popupForm.reset();
-    }
   }
 
   // закрытие попап окна
   closePopup() {
     super.closePopup();
+    this._popupForm.reset();
   }
 }
