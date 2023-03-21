@@ -15,7 +15,11 @@
 
     <main class="main">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./image/Profile.png')%>" alt="Фотография профиля">
+        <div class="profile__avatar">
+          <button class="profile__avatar_btn">
+            <img class="profile__avatar_image" src="<%=require('./image/Profile.png')%>" alt="Фотография профиля">
+          </button>
+        </div>
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__subtitle">Исследователь океана</p>
@@ -74,13 +78,38 @@
       </div>
     </section>
 
+    <section class="popup popup_type_change-avatar">
+      <div class="popup__container popup__container_change-avatar popup__overlay ">
+        <h3 class="popup__title">Обновить аватар</h3>
+        <form class="popup__form popup__form_type-avatar" novalidate>
+          <input class="popup__profile-edit popup__profile-edit_type_src" type="url" name="link" id="avatar-url" placeholder="Ссылка на картинку" required>
+          <span class="popup__input-error avatar-url-error"></span>
+          <button class="popup__btn popup__btn_change-avatar popup__btn-change-avatar" type="submit">Сохранить</button>
+        </form>
+        <button type="button" class="popup__close"></button>
+      </div>
+    </section>
+
+    <section class="popup popup_type_confirm-deletion">
+      <div class="popup__container popup__container_confirm-deletion popup__overlay">
+        <h3 class="popup__title">Вы уверены?</h3>
+        <form class="popup__form popup__form_type_confirm">
+          <button class="popup__btn popup__btn_confirm-deletion popup__btn-confirm-deletion" type="submit">Да</button>
+        </form>
+        <button type="button" class="popup__close"></button>
+      </div>
+    </section>
+
     <template id="cards-template">
       <li class="cards__item">
         <button class="cards__delete-btn" type="button"></button>
         <img class="cards__image">
         <div class="cards-description">
           <h2 class="cards__subtitle"></h2>
-          <button class="cards__like-btn" type="button"></button>
+          <div class="cards__like-container">
+            <button class="cards__like-btn" type="button"></button>
+            <p class="cards__like-counter">0</p>
+          </div>
         </div>
       </li>
     </template>

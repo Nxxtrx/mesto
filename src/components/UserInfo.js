@@ -1,7 +1,9 @@
 export default class UserInfo{
-  constructor({profileName, profileTitle}) {
+  constructor({profileName, profileTitle, profileAvatar}) {
     this._profileName = document.querySelector(profileName);
     this._profileTitle = document.querySelector(profileTitle);
+    this._profileAvatar = document.querySelector(profileAvatar)
+
   }
 
   // получение данных с профиля
@@ -19,4 +21,10 @@ export default class UserInfo{
     this._profileName.textContent = name;
     this._profileTitle.textContent = description;
   }
+
+  setAvatar({newAvatarLink}) {
+    this._profileAvatar.src = newAvatarLink
+  }
+
+
 }

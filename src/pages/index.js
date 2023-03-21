@@ -5,6 +5,8 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
+import Api from '../components/Api.js';
 
 import {
   profilEditBtn,
@@ -19,6 +21,26 @@ import {
 } from '../utils/constants.js'
 
 
+
+const popupwithConfirmation = new PopupWithConfirmation('.popup_type_confirm-deletion');
+
+// -------Инстанцирования класса Api -----------------------
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-62',
+  headers: {
+    authorization: '1eb1009b-e789-45d3-b8d6-70ecf75cef41',
+    'Content-Type': 'application/json'
+  }
+});
+
+
+
+api.getUserInfo().then((data) => {
+  userInfo.setAvatar({newAvatarLink: data.avatar})
+  userInfo.setUserInfo({name: data.name, description: data.about})
+});
+
 // --------------------------------------Валидация форм------------------------------------
 
 // добавление валидации формы для редактирования профиля
@@ -29,10 +51,36 @@ formProfileEditValidation.enableValidation();
 const formAddMestoValidation = new FormValidation(formValidationConfig, formPopupAddMesto);
 formAddMestoValidation.enableValidation();
 
+const formPopupChangeAvatar = document.querySelector('.popup__form_type-avatar');
+
+const formChangeAvatarValdation = new FormValidation(formValidationConfig, formPopupChangeAvatar);
+formChangeAvatarValdation.enableValidation();
+
+
+
+// -------------Инстанцирования класса PopupWithForm для редактирования аватарки------------------
+
+const popupEditAvatar = new PopupWithForm({
+  popupSelector: '.popup_type_change-avatar',
+  callbackFunction: (formList) => {
+    api.setUserAvatar({avatar: formList.link})
+    .then((data) => {
+      userInfo.setAvatar({newAvatarLink: data.avatar});
+      popupEditAvatar.closePopup();
+    })
+  }
+})
+popupEditAvatar.setEventListeners();
+
+const avatarEditBtn = document.querySelector('.profile__avatar_btn');
+avatarEditBtn.addEventListener('click', ()=>{
+  popupEditAvatar.openPopup();
+})
+
 
 // -------------------------------------Данные с профиля-----------------------------------
 
-const userInfo = new UserInfo({profileName: '.profile__name', profileTitle: '.profile__subtitle'})
+const userInfo = new UserInfo({profileName: '.profile__name', profileTitle: '.profile__subtitle', profileAvatar: '.profile__avatar_image'})
 
 
 
@@ -42,8 +90,11 @@ const userInfo = new UserInfo({profileName: '.profile__name', profileTitle: '.pr
 const popupEditProfile = new PopupWithForm({
   popupSelector: '.popup_type_edit',
   callbackFunction: (formList) => {
-    userInfo.setUserInfo(formList);
-    popupEditProfile.closePopup();
+    api.setUserInfo({name: formList.name, about: formList.description})
+    .then((data) => {
+      userInfo.setUserInfo({name: data.name, description: data.about})
+      popupEditProfile.closePopup();
+    })
   }
 });
 popupEditProfile.setEventListeners();
@@ -60,6 +111,8 @@ const popupAddCard = new PopupWithForm({
 })
 
 popupAddCard.setEventListeners();
+
+
 
 
 // -------------------------------Рендеринг карточек на страницу----------------------------
@@ -83,7 +136,7 @@ const cardList = new Section({
   data: initialCards.reverse(),
   renderer: (item) => {
     // добавление сгенерированной карточки
-    cardList.setItem(createCard(item));
+    cardList.setItem(createCard(item))
   }
 }, cardListSelector)
 
