@@ -17,7 +17,8 @@ import {
   cardAddBtn,
   cardListSelector,
   formValidationConfig,
-  avatarEditBtn
+  avatarEditBtn,
+  formPopupChangeAvatar
 } from '../utils/constants.js'
 
 
@@ -52,7 +53,7 @@ formProfileEditValidation.enableValidation();
 const formAddMestoValidation = new FormValidation(formValidationConfig, formPopupAddMesto);
 formAddMestoValidation.enableValidation();
 
-const formPopupChangeAvatar = document.querySelector('.popup__form_type-avatar');
+
 
 // добавление валидации формы для редактирования аватара
 const formChangeAvatarValdation = new FormValidation(formValidationConfig, formPopupChangeAvatar);
