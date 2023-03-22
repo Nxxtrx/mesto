@@ -85,7 +85,7 @@ popupEditAvatar.setEventListeners();
 
 // -------------------------------------Данные с профиля-----------------------------------
 
-const userInfo = new UserInfo({profileName: '.profile__name', profileTitle: '.profile__subtitle', profileAvatar: '.profile__avatar_image'})
+const userInfo = new UserInfo({profileName: '.profile__name', profileTitle: '.profile__subtitle', profileAvatar: '.profile__avatar-image'})
 
 
 

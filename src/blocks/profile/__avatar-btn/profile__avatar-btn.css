@@ -1,4 +1,4 @@
-.profile__avatar_btn {
+.profile__avatar-btn {
   width: 120px;
   height: 120px;
   border-radius: 100px;
@@ -9,6 +9,6 @@
   transition: opacity .2s linear;
 }
 
-.profile__avatar_btn:hover {
+.profile__avatar-btn:hover {
   opacity: 0.2;
 }

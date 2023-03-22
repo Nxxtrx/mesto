@@ -21,7 +21,7 @@ export const formPopupAddMesto = page.querySelector('.popup__form_type_add');
 export const cardAddBtn = page.querySelector('.profile__add-button');
 
 // кнопка открытия попап окна редактирования  аватара
-export const avatarEditBtn = page.querySelector('.profile__avatar_btn');
+export const avatarEditBtn = page.querySelector('.profile__avatar-btn');
 
 export const formPopupChangeAvatar = page.querySelector('.popup__form_type-avatar');
 
