@@ -6,9 +6,9 @@ export default class Api{
 
   _check(res) {
     if(res.ok) {
-      return res.json()
+      return res.json();
     }else {
-      return console.log("ошибка")
+      return Promise.reject(`Ошибка: ${res.status}`);
     }
   }
 
