@@ -1,9 +1,17 @@
 class Card {
-  constructor(card, templateSelector, hundleCardClick){
+  constructor({card, templateSelector, hundleCardClick, userId, handleLikeBtn, handleRemoveCard}){
     this._name = card.name;
     this._link = card.link;
     this._hundleCardClick = hundleCardClick;
     this._templateSelector = templateSelector;
+
+    this._handleLikeCard = handleLikeBtn;
+    this._cardId = card._id;
+    this._like = card.likes;
+    this._userId = userId;
+    this._cardOwnerId = card.owner._id;
+
+    this._handleRemoveCard = handleRemoveCard;
   }
 
   // функция клонирования типплейта
@@ -12,13 +20,36 @@ class Card {
     return cardElement;
   }
 
-  // функция лайка карточки
-  _switchLikeCard = () => {
-    this._likeButton.classList.toggle('cards__like-btn_active');
+  addLikeCard() {
+    this._likeButton.classList.add('cards__like-btn_active');
+    this.isLiked = true;
+  }
+
+  removeLikeCard() {
+    this._likeButton.classList.remove('cards__like-btn_active');
+    this.isLiked = false;
+  }
+
+  updateCounterLike(cardLike) {
+    this._likeCount.textContent = cardLike.length
+  }
+
+  _checkUserLike() {
+    return this._like.some((item) => {
+      return item._id === this._userId;
+    })
+  }
+
+  _toggleLikeWhileLodaing() {
+    if(this._checkUserLike()){
+      this.addLikeCard()
+    } else {
+      this.removeLikeCard();
+    }
   }
 
   // функция удаления карточки
-  _removeCard = () => {
+  removeCard = () => {
     this._element.remove();
     this._element = null;
   }
@@ -27,18 +58,27 @@ class Card {
   _addEventListener = () => {
     // слушатель для лайка на карточке
     this._likeButton.addEventListener('click', () => {
-      this._switchLikeCard();
+      this._handleLikeCard();
     })
 
-    // Слушатель для удаления карточки
-    this._buttonRemoveCard.addEventListener('click', () => {
-      this._removeCard();
+    if (this._cardOwnerId == this._userId) {
+      // Слушатель для удаления карточки
+      this._buttonRemoveCard.addEventListener('click', () => {
+        this._handleRemoveCard();
     })
+    } else {
+      this._buttonRemoveCard.remove();
+      this._buttonRemoveCard = null;
+    }
 
     // Слушатель на картинку для открытия попапа
     this._cardImage.addEventListener('click', () => {
       this._hundleCardClick(this._link, this._name);
     })
+  }
+
+  getCardId() {
+    return this._cardId;
   }
 
   generateCard=() => {
@@ -56,11 +96,16 @@ class Card {
     // кнопка лайка
     this._likeButton = this._element.querySelector('.cards__like-btn');
 
+
+    this._likeCount = this._element.querySelector('.cards__like-counter');
+    this._likeCount.textContent = this._like.length;
+
     // кнопка удаления карточки
     this._buttonRemoveCard = this._element.querySelector('.cards__delete-btn');
 
     // добавления слушателей
     this._addEventListener();
+    this._toggleLikeWhileLodaing();
     return this._element;
   }
 }

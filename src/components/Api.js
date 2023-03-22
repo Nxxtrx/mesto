@@ -12,6 +12,9 @@ export default class Api{
     }
   }
 
+  getUserData() {
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]);
+  }
 
   getInitialCards() {
     this._request = this._baseUrl + '/cards';
@@ -42,6 +45,39 @@ export default class Api{
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify(avatarUrl)
+    }).then(res => this._check(res))
+  }
+
+  setAddCard(cardData) {
+    this._request = this._baseUrl + '/cards';
+    return fetch(this._request, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify(cardData)
+    }).then(res => this._check(res))
+  }
+
+  setLikeCard(cardId) {
+    this._request = this._baseUrl + '/cards/'+ cardId +'/likes';
+    return fetch(this._request, {
+      method: 'PUT',
+      headers: this._headers
+    }).then(res => this._check(res))
+  }
+
+  deleteLikeCard(cardId) {
+    this._request = this._baseUrl + '/cards/'+ cardId +'/likes';
+    return fetch(this._request, {
+      method: "DELETE",
+      headers: this._headers
+    }).then(res => this._check(res))
+  }
+
+  removeCard(cardId) {
+    this._request = this._baseUrl + '/cards/' + cardId;
+    return fetch(this._request, {
+      method: "DELETE",
+      headers: this._headers
     }).then(res => this._check(res))
   }
 }

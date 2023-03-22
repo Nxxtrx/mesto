@@ -20,6 +20,9 @@ export const formPopupAddMesto = page.querySelector('.popup__form_type_add');
 // popup окно добавления карточки
 export const cardAddBtn = page.querySelector('.profile__add-button');
 
+// кнопка открытия попап окна редактирования  аватара
+export const avatarEditBtn = page.querySelector('.profile__avatar_btn');
+
 
 export const cardListSelector = ".cards__list";
 
