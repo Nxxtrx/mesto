@@ -21,7 +21,7 @@ export default class UserInfo{
   }
 
   setAvatar({newAvatarLink}) {
-    this._profileAvatar.src = newAvatarLink
+    this._profileAvatar.src = newAvatarLink;
   }
 
   getUserId() {

@@ -42,7 +42,6 @@ api.getUserData().then(data => {
   cardList.renderItems(initialCards.reverse());
 }).catch(err => console.log(`Ошибка: ${err}`))
 
-
 // --------------------------------------Валидация форм------------------------------------
 
 // добавление валидации формы для редактирования профиля
@@ -98,7 +97,7 @@ const popupEditProfile = new PopupWithForm({
     popupEditProfile.renderLoading(true);
     api.setUserInfo({name: formList.name, about: formList.description})
     .then((data) => {
-      userInfo.setUserInfo({name: data.name, description: data.about})
+      userInfo.setUserInfo({name: data.name, description: data.about, userId: data._id})
       popupEditProfile.closePopup();
     })
     .catch((err) => console.log(`Ошибка: ${err}`))
@@ -110,7 +109,7 @@ popupEditProfile.setEventListeners();
 
 // ----------------------------------Попап для добавление новых карточек--------------------
 
-// Инстанцирования класса PopupWithForm для доавбления новых карточек
+// Инстанцирования класса PopupWithForm для добавления новых карточек
 const popupAddCard = new PopupWithForm({
   popupSelector: '.popup_type_add-item',
   callbackFunction: (formList) => {
@@ -169,10 +168,12 @@ function createCard(item) {
 
 // Функция для открытия попапа с картинкой
 function hundleCardClick(link, name) {
-  const imagePopup = new PopupWithImage('.popup_type_open-image');
   imagePopup.openPopup(link, name)
-  imagePopup.setEventListeners();
 }
+
+// Инстанцирование класса PopupWithImage
+const imagePopup = new PopupWithImage('.popup_type_open-image');
+imagePopup.setEventListeners();
 
 // Инстанцирование класса Section
 const cardList = new Section({
@@ -219,6 +220,7 @@ cardAddBtn.addEventListener('click', () => {
 // кнопка открытия попап окна редактирования автара
 avatarEditBtn.addEventListener('click', ()=>{
   formChangeAvatarValdation.resetValidationErrors();
+  formChangeAvatarValdation.resetSubmitButton();
   popupEditAvatar.openPopup();
 })
 

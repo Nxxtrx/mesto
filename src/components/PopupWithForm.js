@@ -5,7 +5,8 @@ export default class PopupWithForm extends Popup{
     super(popupSelector);
     this._callbackSubmitform = callbackFunction;
     this._popupForm = this._popup.querySelector('.popup__form');
-    this._submitButton = this._popupForm.querySelector('.popup__btn')
+    this._submitButton = this._popupForm.querySelector('.popup__btn');
+    this._submitButtonText = this._submitButton.textContent;
     this._inputList = Array.from(this._popupForm.querySelectorAll('.popup__profile-edit'));
   }
 
@@ -37,7 +38,7 @@ export default class PopupWithForm extends Popup{
     if(isLoading) {
       this._submitButton.textContent = 'Сохранение...';
     } else {
-      this._submitButton.textContent = 'Сохранить';
+      this._submitButton.textContent = this._submitButtonText;
     }
   }
 }
