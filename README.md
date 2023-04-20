@@ -1,4 +1,4 @@
-# Проект: "Место"
+# <img width="70px" src="https://media.tenor.com/f61Fpec7INoAAAAi/mecha-anime.gif"></img> Проект: "Место" <img width="70px" src="https://media.tenor.com/f61Fpec7INoAAAAi/mecha-anime.gif"></img>
 
 ------------------------------------------------------------------------
 
